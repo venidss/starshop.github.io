@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Star Shop</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #450303;
+            color: #fff;
+        }
+        .navbar, .footer {
+            background-color: #680404;
+        }
+        .cart-item {
+            background-color: #680404;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .cart-item img {
+            max-height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .cart-item h2, .cart-item h3 {
+            color: #fff;
+        }
+        .cart-item button {
+            margin: 5px 0;
+        }
+        .buy-button {
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #270f0f;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .buy-button:hover {
+            background-color: #a00000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand text-white" href="index.html">Star Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="products.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.html">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline ml-auto">
+                <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="button" id="searchButton">Search</button>
+                <a href="cart.html" class="cart-button ml-3">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Cart Items -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Your Cart</h2>
+        <div id="cartItems">
+            <!-- Cart Item Example -->
+            <!-- Items will be dynamically added here by JavaScript -->
+        </div>
+        <div class="text-center">
+            <button class="buy-button" id="checkoutButton">Buy All Items</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-white py-4">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>© 2024 Star Shop Inc. · <a href="#" class="text-white">Privacy</a> · <a href="#" class="text-white">Terms</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function loadCartItems() {
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                $('#cartItems').empty();
+                cartItems.forEach(item => {
+                    $('#cartItems').append(`
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div>
+                                <h2>${item.name}</h2>
+                                <h3>${item.price}</h3>
+                                <button class="btn btn-success buy-button buy-item" data-name="${item.name}" data-price="${item.price}">Buy Now</button>
+                            </div>
+                            <button class="btn btn-danger remove-item" data-name="${item.name}">Remove</button>
+                        </div>
+                    `);
+                });
+            }
+
+            function confirmCheckout() {
+                if (confirm('Are you sure you want to buy all items in your cart?')) {
+                    alert('Thank you for your purchase! All items have been bought.');
+                    localStorage.removeItem('cartItems');
+                    $('#cartItems').empty();
+                }
+            }
+
+            // Load cart items on page load
+            loadCartItems();
+
+            // Remove item from cart
+            $('#cartItems').on('click', '.remove-item', function() {
+                let itemName = $(this).data('name');
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                cartItems = cartItems.filter(item => item.name !== itemName);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                loadCartItems();
+            });
+
+            // Buy individual item
+            $('#cartItems').on('click', '.buy-item', function() {
+                let itemName = $(this).data('name');
+                let itemPrice = $(this).data('price');
+                if (confirm(`Are you sure you want to buy ${itemName} for ${itemPrice}?`)) {
+                    alert(`You have successfully bought ${itemName}.`);
+                    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                    cartItems = cartItems.filter(item => item.name !== itemName);
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    loadCartItems();
+                }
+            });
+
+            // Checkout button functionality
+            $('#checkoutButton').click(function() {
+                confirmCheckout();
+            });
+        });
+    </script>
+</body>
+</html>

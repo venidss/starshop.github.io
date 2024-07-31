@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Star Shop</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #450303;
+            color: #fff;
+        }
+        .navbar, .footer {
+            background-color: #680404;
+        }
+        .product-card {
+            background-color: #680404;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #fff;
+            text-align: center;
+        }
+        .product-card img {
+            max-height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .product-card h2, .product-card h3 {
+            color: #fff;
+        }
+        .product-card button {
+            margin: 5px 0;
+        }
+        .cart-button {
+            font-size: 1.5rem;
+            color: #fff;
+            background-color: #270f0f;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+        }
+        .cart-button:hover {
+            background-color: #a00000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand text-white" href="index.html">Star Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.html">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline ml-auto">
+                <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="button" id="searchButton">Search</button>
+                <a href="cart.html" class="cart-button ml-3">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Product Grid -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Our Products</h2>
+        <div class="row" id="productGrid">
+            <!-- Product Cards -->
+            <div class="col-md-4">
+                <div class="product-card" data-name="Starlink WiFi" data-image="photo/1695992384827.png" data-price="$99.99">
+                    <img src="photo/1695992384827.png" alt="Starlink WiFi">
+                    <h2>Starlink WiFi</h2>
+                    <p class="lead">The Fastest Internet in the World</p>
+                    <h3>$99.99</h3>
+                    <button class="btn btn-success add-to-cart">Add to Cart</button>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card" data-name="Sardines" data-image="photo/6001115003379.jpg" data-price="$10.00">
+                    <img src="photo/6001115003379.jpg" alt="Sardines">
+                    <h2>Sardines</h2>
+                    <p class="lead">The Emergency Food</p>
+                    <h3>$10.00</h3>
+                    <button class="btn btn-success add-to-cart">Add to Cart</button>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card" data-name="The Happy Star" data-image="photo/cartoon-little-star-vector-illustration-design-element-43670778.webp" data-price="$130.00">
+                    <img src="photo/cartoon-little-star-vector-illustration-design-element-43670778.webp" alt="The Happy Star">
+                    <h2>The Happy Star</h2>
+                    <p class="lead">The Star that you can wish</p>
+                    <h3>$130.00</h3>
+                    <button class="btn btn-success add-to-cart">Add to Cart</button>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card" data-name="Five Star Firecraker Premium" data-image="photo/CL171-139.webp" data-price="$30.00">
+                    <img src="photo/CL171-139.webp" alt="Five Star Firecraker Premium">
+                    <h2>Five Star Firecraker Premium</h2>
+                    <p class="lead">The strongest Firecraker</p>
+                    <h3>$30.00</h3>
+                    <button class="btn btn-success add-to-cart">Add to Cart</button>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card" data-name="Five Star Firecraker (weak)" data-image="photo/FIVE STAR.jfif" data-price="$3.00">
+                    <img src="photo/FIVE STAR.jfif" alt="Five Star Firecraker (weak)">
+                    <h2>Five Star Firecraker (weak)</h2>
+                    <p class="lead">The Weakest Five Star</p>
+                    <h3>$3.00</h3>
+                    <button class="btn btn-success add-to-cart">Add to Cart</button>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card" data-name="Starla" data-image="photo/images.jfif" data-price="$199.99">
+                    <img src="photo/images.jfif" alt="Starla">
+                    <h2>Starla</h2>
+                    <p class="lead">The star that you can wish</p>
+                    <h3>$199.99</h3>
+                    <button class="btn btn-success add-to-cart">Add to Cart</button>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card" data-name="The Unknown Star" data-image="photo/Star-of-David.webp" data-price="$100.00">
+                    <img src="photo/Star-of-David.webp" alt="The Unknown Star">
+                    <h2>The Unknown Star</h2>
+                    <p class="lead">Restricted Do not buy for fun</p>
+                    <h3>$100.00</h3>
+                    <button class="btn btn-success add-to-cart">Add to Cart</button>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-white py-4">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>© 2024 Star Shop Inc. · <a href="#" class="text-white">Privacy</a> · <a href="#" class="text-white">Terms</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function addToCart(item) {
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                cartItems.push(item);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            }
+
+            function buyNow(item) {
+                if (confirm(`Are you sure you want to buy ${item.name}?`)) {
+                    addToCart(item);
+                    alert(`You successfully bought ${item.name}.`);
+                }
+            }
+
+            $('.add-to-cart').on('click', function() {
+                let productCard = $(this).closest('.product-card');
+                let item = {
+                    name: productCard.data('name'),
+                    image: productCard.data('image'),
+                    price: productCard.data('price')
+                };
+                addToCart(item);
+                alert(`${item.name} has been added to your cart.`);
+            });
+
+            $('.buy-now').on('click', function() {
+                let productCard = $(this).closest('.product-card');
+                let item = {
+                    name: productCard.data('name'),
+                    image: productCard.data('image'),
+                    price: productCard.data('price')
+                };
+                buyNow(item);
+            });
+
+            $('#searchButton').on('click', function() {
+                let query = $('#searchInput').val().toLowerCase();
+                $('.product-card').each(function() {
+                    let name = $(this).data('name').toLowerCase();
+                    $(this).toggle(name.includes(query));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
